@@ -20,6 +20,8 @@
 		BB238F112742F5B300B96908 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB238F102742F5B300B96908 /* Test.swift */; };
 		BB238F132742F5C300B96908 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB238F122742F5C300B96908 /* Question.swift */; };
 		BB238F152743021F00B96908 /* HomeViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB238F142743021F00B96908 /* HomeViewRow.swift */; };
+		BB2DC57B27430A7600F4AF4C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2DC57A27430A7600F4AF4C /* ContentView.swift */; };
+		BB2DC57D2743112F00F4AF4C /* ContentViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2DC57C2743112F00F4AF4C /* ContentViewRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,8 @@
 		BB238F102742F5B300B96908 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		BB238F122742F5C300B96908 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		BB238F142743021F00B96908 /* HomeViewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewRow.swift; sourceTree = "<group>"; };
+		BB2DC57A27430A7600F4AF4C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BB2DC57C2743112F00F4AF4C /* ContentViewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +98,8 @@
 			children = (
 				BB238EF12742EEF900B96908 /* HomeView.swift */,
 				BB238F142743021F00B96908 /* HomeViewRow.swift */,
+				BB2DC57A27430A7600F4AF4C /* ContentView.swift */,
+				BB2DC57C2743112F00F4AF4C /* ContentViewRow.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -206,12 +212,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB2DC57D2743112F00F4AF4C /* ContentViewRow.swift in Sources */,
 				BB238EF22742EEF900B96908 /* HomeView.swift in Sources */,
 				BB238F152743021F00B96908 /* HomeViewRow.swift in Sources */,
 				BB238F132742F5C300B96908 /* Question.swift in Sources */,
 				BB238EF02742EEF900B96908 /* LearningApp.swift in Sources */,
 				BB238F032742EF9A00B96908 /* ContentModel.swift in Sources */,
 				BB238F112742F5B300B96908 /* Test.swift in Sources */,
+				BB2DC57B27430A7600F4AF4C /* ContentView.swift in Sources */,
 				BB238F0F2742F5A500B96908 /* Lesson.swift in Sources */,
 				BB238F0D2742F58800B96908 /* Content.swift in Sources */,
 				BB238F0B2742F45400B96908 /* Module.swift in Sources */,
