@@ -7,15 +7,19 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct HomeView: View {
+    //MARK: Properties
+    @EnvironmentObject var model : ContentModel
+    //MARK: UI
     var body: some View {
         Text("Hello, world!")
             .padding()
     }
+    //MARK: Methods    
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        HomeView()
     }
 }
