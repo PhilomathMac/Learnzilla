@@ -25,6 +25,7 @@
 		BB300EAF2743167B00D8D1EF /* ContentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB300EAE2743167B00D8D1EF /* ContentDetailView.swift */; };
 		BB300EB22743189700D8D1EF /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB300EB12743189700D8D1EF /* AVKit.framework */; };
 		BB300EB4274319BD00D8D1EF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB300EB3274319BD00D8D1EF /* Constants.swift */; };
+		BB300EF527432C4600D8D1EF /* CodeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB300EF427432C4600D8D1EF /* CodeTextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		BB300EAE2743167B00D8D1EF /* ContentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailView.swift; sourceTree = "<group>"; };
 		BB300EB12743189700D8D1EF /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		BB300EB3274319BD00D8D1EF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BB300EF427432C4600D8D1EF /* CodeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				BB2DC57A27430A7600F4AF4C /* ContentView.swift */,
 				BB2DC57C2743112F00F4AF4C /* ContentViewRow.swift */,
 				BB300EAE2743167B00D8D1EF /* ContentDetailView.swift */,
+				BB300EF427432C4600D8D1EF /* CodeTextView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				BB238EF22742EEF900B96908 /* HomeView.swift in Sources */,
 				BB238F152743021F00B96908 /* HomeViewRow.swift in Sources */,
 				BB238F132742F5C300B96908 /* Question.swift in Sources */,
+				BB300EF527432C4600D8D1EF /* CodeTextView.swift in Sources */,
 				BB238EF02742EEF900B96908 /* LearningApp.swift in Sources */,
 				BB238F032742EF9A00B96908 /* ContentModel.swift in Sources */,
 				BB238F112742F5B300B96908 /* Test.swift in Sources */,

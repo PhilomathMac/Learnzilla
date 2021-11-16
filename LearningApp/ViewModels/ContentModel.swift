@@ -19,6 +19,7 @@ class ContentModel : ObservableObject {
     // Current Lesson
     @Published var currentLesson: Lesson?
     var currentLessonIndex = 0
+    @Published var currentLessonDescription = NSAttributedString()
     
     // Style Data
     var styleData : Data?
@@ -50,6 +51,8 @@ class ContentModel : ObservableObject {
             currentLessonIndex = 0
         }
         currentLesson = currentModule!.content.lessons[currentLessonIndex]
+        // Set lesson description
+        currentLessonDescription = addStyling(htmlString: currentLesson!.explanation)
     }
     
     func hasNextLesson() -> Bool {
@@ -63,6 +66,7 @@ class ContentModel : ObservableObject {
         if currentLessonIndex < currentModule!.content.lessons.count {
             // Set currentLesson
             currentLesson = currentModule!.content.lessons[currentLessonIndex]
+            currentLessonDescription = addStyling(htmlString: currentLesson!.explanation)
         } else {
             // Reset lesson state
             currentLesson = nil
@@ -112,5 +116,29 @@ class ContentModel : ObservableObject {
             print(error)
         }
         
+    }
+    // MARK: Code Styling
+    private func addStyling(htmlString: String) -> NSAttributedString {
+        var resultString = NSAttributedString()
+        var data = Data()
+        
+        // Add styling data
+        if styleData != nil {
+            data.append(self.styleData!)
+        }
+        
+        // Add html data
+        data.append(Data(htmlString.utf8))
+        
+        // Convert to attributed string
+        // tries to do the stuff after the try and if it can't then it just skips the code (if let asdfasdf = try?)
+        if let attributedString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
+                
+            resultString = attributedString
+            
+        }
+        
+        
+        return resultString
     }
 }

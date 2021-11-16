@@ -24,7 +24,7 @@ struct ContentDetailView: View {
         }
         
         // Description
-        Text("TODO: Fix Description")
+        CodeTextView()
         
         // Show next Lesson Button only if there is a next lesson
             if model.hasNextLesson() {
@@ -45,6 +45,7 @@ struct ContentDetailView: View {
             }
         }
         .padding()
+        .navigationTitle(lesson?.title ?? "Lesson")
     }
 }
 
