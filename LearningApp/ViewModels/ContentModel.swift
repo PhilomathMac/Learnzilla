@@ -12,14 +12,20 @@ class ContentModel : ObservableObject {
     // List of Modules
     @Published var modules = [Module]()
     
-    // Curent Module
+    // Current Module
     @Published var currentModule: Module?
     var currentModuleIndex = 0
     
     // Current Lesson
     @Published var currentLesson: Lesson?
     var currentLessonIndex = 0
+    
+    // Current Lesson Explanation
     @Published var currentLessonDescription = NSAttributedString()
+    
+    // Binding for Navigation Links -> Current Selected Content and Test
+    @Published var currentContentSelected: Int?
+    
     
     // Style Data
     var styleData : Data?
@@ -28,7 +34,7 @@ class ContentModel : ObservableObject {
         getLocalData()
     }
     
-    //MARK: Module Navigation Methods
+    // MARK: Module Navigation Methods
     
     func beginModule(moduleID: Int) {
         
@@ -39,11 +45,14 @@ class ContentModel : ObservableObject {
                 break
             }
         }
+        
         // Set current module
         currentModule = modules[currentModuleIndex]
+        
     }
     
     func beginLesson(lessonIndex: Int) {
+        
         // Check that lesson index is within range of module.lessons
         if lessonIndex < currentModule!.content.lessons.count {
             currentLessonIndex = lessonIndex
@@ -51,6 +60,7 @@ class ContentModel : ObservableObject {
             currentLessonIndex = 0
         }
         currentLesson = currentModule!.content.lessons[currentLessonIndex]
+        
         // Set lesson description
         currentLessonDescription = addStyling(htmlString: currentLesson!.explanation)
     }
@@ -72,10 +82,9 @@ class ContentModel : ObservableObject {
             currentLesson = nil
             currentLessonIndex = 0
         }
-
     }
     
-    //MARK: Data Methods
+    // MARK: Data Methods
     func getLocalData() {
         // Get url
         let jsonURL = Bundle.main.url(forResource: "data", withExtension: "json")
@@ -117,6 +126,7 @@ class ContentModel : ObservableObject {
         }
         
     }
+    
     // MARK: Code Styling
     private func addStyling(htmlString: String) -> NSAttributedString {
         var resultString = NSAttributedString()
@@ -137,7 +147,6 @@ class ContentModel : ObservableObject {
             resultString = attributedString
             
         }
-        
         
         return resultString
     }

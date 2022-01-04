@@ -23,7 +23,7 @@ struct HomeViewRow: View {
                 .shadow(radius: 5)
                 // Hard coded size - not good for adjustable sizes
                 //.frame(width: 335, height: 175)
-                // Will take up as much space as it can while maintaining aspect ratio
+                // Using aspect ratio - will take up as much space as it can while maintaining aspect ratio
                 .aspectRatio(CGSize(width: 335, height: 175), contentMode: .fit)
             
             HStack {
@@ -66,7 +66,7 @@ struct HomeViewRow: View {
 
 struct HomeViewRow_Previews: PreviewProvider {
     static var previews: some View {
-        HomeViewRow(image: "swift", title: "Learn Swift", description: "testing testing testing description", countString: "10 Lessons", time: "2 Hours")
+        HomeViewRow(image: "swift", title: "Learn Swift", description: "testing testing testing testing testing testing description", countString: "10 Lessons", time: "2 Hours")
     
     }
 }

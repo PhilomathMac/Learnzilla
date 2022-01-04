@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB1DADE4274708BE00910B92 /* RectangleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1DADE3274708BE00910B92 /* RectangleCard.swift */; };
 		BB238EF02742EEF900B96908 /* LearningApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB238EEF2742EEF900B96908 /* LearningApp.swift */; };
 		BB238EF22742EEF900B96908 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB238EF12742EEF900B96908 /* HomeView.swift */; };
 		BB238EF42742EEFA00B96908 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB238EF32742EEFA00B96908 /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BB1DADE3274708BE00910B92 /* RectangleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleCard.swift; sourceTree = "<group>"; };
 		BB238EEC2742EEF900B96908 /* LearningApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearningApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB238EEF2742EEF900B96908 /* LearningApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningApp.swift; sourceTree = "<group>"; };
 		BB238EF12742EEF900B96908 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				BB2DC57C2743112F00F4AF4C /* ContentViewRow.swift */,
 				BB300EAE2743167B00D8D1EF /* ContentDetailView.swift */,
 				BB300EF427432C4600D8D1EF /* CodeTextView.swift */,
+				BB1DADE3274708BE00910B92 /* RectangleCard.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 				BB2DC57D2743112F00F4AF4C /* ContentViewRow.swift in Sources */,
 				BB238EF22742EEF900B96908 /* HomeView.swift in Sources */,
 				BB238F152743021F00B96908 /* HomeViewRow.swift in Sources */,
+				BB1DADE4274708BE00910B92 /* RectangleCard.swift in Sources */,
 				BB238F132742F5C300B96908 /* Question.swift in Sources */,
 				BB300EF527432C4600D8D1EF /* CodeTextView.swift in Sources */,
 				BB238EF02742EEF900B96908 /* LearningApp.swift in Sources */,
