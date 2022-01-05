@@ -14,12 +14,13 @@ struct HomeView: View {
     //MARK: UI
     var body: some View {
         
-        
         NavigationView {
             VStack(alignment: .leading) {
                 Text("What would you like to do today?")
                     .padding(.leading, 20)
+                
                 ScrollView {
+                    
                     LazyVStack {
                         ForEach (model.modules) { module in
                             
@@ -39,16 +40,7 @@ struct HomeView: View {
                                         HomeViewRow(image: module.content.image, title: "Learn \(module.category)", description: module.content.description, countString: "\(module.content.lessons.count) Lessons", time: module.content.time)
                                     })
                                 
-                                // New style of Navigation Link - format : tag, selection, destination, label
-                                NavigationLink(tag: module.id, selection: $model.currentContentSelected) {
-                                    ContentView()
-                                        .onAppear {
-                                            model.beginModule(moduleID: module.id)
-                                        }
-                                } label: {
-                                    // Test Card
-                                    HomeViewRow(image: module.test.image, title: "\(module.category) Test", description: module.test.description, countString: "\(module.test.questions.count) Questions", time: module.test.time)
-                                }
+                                HomeViewRow(image: module.test.image, title: "\(module.category) Test", description: module.test.description, countString: "\(module.test.questions.count) Questions", time: module.test.time)
                             }
                         }
                     }
@@ -58,9 +50,8 @@ struct HomeView: View {
             }
             .navigationTitle("Get Started")
         }
-        .navigationViewStyle(StackNavigationViewStyle())
+        .navigationViewStyle(.stack)
     }
-    //MARK: Methods
 }
 
 struct HomeView_Previews: PreviewProvider {
