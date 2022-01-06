@@ -91,8 +91,10 @@ class ContentModel : ObservableObject {
     }
     
     func nextLesson() {
+        
         // Advance lesson index
         currentLessonIndex += 1
+        
         // Check if in range
         if currentLessonIndex < currentModule!.content.lessons.count {
             // Set currentLesson
@@ -103,6 +105,25 @@ class ContentModel : ObservableObject {
             currentLesson = nil
             currentLessonIndex = 0
         }
+        
+    }
+    
+    func nextQuestion() {
+        
+        // Advance question index
+        currentQuestionIndex += 1
+        
+        // Check if in range
+        if currentQuestionIndex < currentModule!.test.questions.count {
+            // Set currentQuestion
+            currentQuestion = currentModule!.test.questions[currentQuestionIndex]
+            codeText = addStyling(htmlString: currentQuestion!.content)
+        } else {
+            // Reset question state
+            currentQuestion = nil
+            currentQuestionIndex = 0
+        }
+        
     }
     
     // MARK: Data Methods
