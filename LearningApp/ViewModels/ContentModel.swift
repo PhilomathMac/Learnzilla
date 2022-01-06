@@ -37,6 +37,7 @@ class ContentModel : ObservableObject {
     
     init() {
         getLocalData()
+        getRemoteData()
     }
     
     // MARK: Module Navigation Methods
@@ -166,6 +167,60 @@ class ContentModel : ObservableObject {
             print("Couldn't parse style data")
             print(error)
         }
+        
+    }
+    
+    func getRemoteData() {
+        
+        // Get string path
+        let urlString = "https://philomathmac.github.io/learningapp-data/data2.json"
+        
+        // Create a URL object
+        let url = URL(string: urlString)
+        
+        guard url != nil else {
+            // Couldn't create url
+            print("Could not create remote url object")
+            return
+        }
+        
+        // Create a URLRequest object
+        let request = URLRequest(url: url!)
+        
+        // Create a session to kick off the task
+        let session = URLSession.shared
+        
+        // Create a data task
+        let dataTask = session.dataTask(with: request) { data, response, error in
+            
+            // Check if there's an error
+            guard error == nil else {
+                // There was an error
+                print("Error creating dataTask")
+                return
+            }
+            
+            // Handle the response
+            do {
+                // Create json decoder
+                let decoder = JSONDecoder()
+            
+                // Decode
+                let modules = try decoder.decode([Module].self, from: data!)
+                
+                // Append modules into modules property
+                self.modules += modules
+                
+            } catch {
+                // Couldn't parse json
+                print("Couldn't parse remote data")
+                print(error)
+            }
+            
+        }
+        
+        // Kick off the data task
+        dataTask.resume()
         
     }
     

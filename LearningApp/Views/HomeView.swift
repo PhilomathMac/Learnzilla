@@ -49,6 +49,7 @@ struct HomeView: View {
                                         HomeViewRow(image: module.test.image, title: "\(module.category) Test", description: module.test.description, countString: "\(module.test.questions.count) Questions", time: module.test.time)
                                     }
                             }
+                            .padding(.bottom, 10)
                         }
                     }
                     .accentColor(.black)
