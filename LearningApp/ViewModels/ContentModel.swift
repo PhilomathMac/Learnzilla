@@ -71,6 +71,10 @@ class ContentModel : ObservableObject {
     }
     
     func hasNextLesson() -> Bool {
+        guard currentModule != nil else {
+            return false
+        }
+        
         return (currentLessonIndex + 1) < currentModule!.content.lessons.count
     }
     
@@ -144,8 +148,10 @@ class ContentModel : ObservableObject {
             let jsonDecoder = JSONDecoder()
             let modules = try jsonDecoder.decode([Module].self, from: jsonData)
             
-            // Assign parsed modules to modules property
-            self.modules = modules
+            DispatchQueue.main.async {
+                // Assign parsed modules to modules property
+                self.modules = modules
+            }
             
         } catch {
             // TODO Log Error
@@ -207,9 +213,11 @@ class ContentModel : ObservableObject {
             
                 // Decode
                 let modules = try decoder.decode([Module].self, from: data!)
-                
-                // Append modules into modules property
-                self.modules += modules
+                // Wrap in a dispatch queue to tell main that it can fetch the data when it has a chance
+                DispatchQueue.main.async {
+                    // Append modules into modules property
+                    self.modules += modules
+                }
                 
             } catch {
                 // Couldn't parse json
