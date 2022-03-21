@@ -9,10 +9,10 @@ import Foundation
 
 struct Test : Decodable, Identifiable {
     
-    var id: Int
-    var image: String
-    var time: String
-    var description: String
-    var questions: [Question]
+    var id: String = ""
+    var image: String = ""
+    var time: String = ""
+    var description: String = ""
+    var questions: [Question] = [Question]()
     
 }

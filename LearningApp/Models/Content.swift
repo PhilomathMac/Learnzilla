@@ -9,10 +9,10 @@ import Foundation
 
 struct Content : Decodable, Identifiable {
     
-    var id: Int
-    var image: String
-    var time: String
-    var description: String
-    var lessons: [Lesson]
+    var id: String = ""
+    var image: String = ""
+    var time: String = ""
+    var description: String = ""
+    var lessons: [Lesson] = [Lesson]()
     
 }

@@ -12,9 +12,18 @@ struct ContentDetailView: View {
     
     @EnvironmentObject var model : ContentModel
     
+//    var player: AVPlayer {
+//        if url != nil {
+//            return AVPlayer(url: url!)
+//        } else {
+//            return AVPlayer(url: URL(string: "https://codewithchris.github.io/Module5Challenge/Lesson%201.mp4"))
+//        }
+//    }
+    
     var body: some View {
         let lesson = model.currentLesson
         let url = URL(string: Constants.videoHostURL + (lesson?.video ?? ""))
+
         
         VStack {
         // Only show videoPlayer if we get a valid url

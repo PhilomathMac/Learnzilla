@@ -6,8 +6,16 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseAuth
 
 class ContentModel : ObservableObject {
+    
+    // Authentication flag
+    @Published var loggedIn = false
+    
+    // Database of modules
+    let database = Firestore.firestore()
     
     // List of Modules
     @Published var modules = [Module]()
@@ -36,13 +44,24 @@ class ContentModel : ObservableObject {
     var styleData : Data?
     
     init() {
-        getLocalData()
-        getRemoteData()
+        // Won't get data in init method anymore. Since we want to control when we get the data.
+        //getLocalData()
+        //getRemoteData()
+        //getDatabaseModules()
+        
     }
+    // MARK: Authentication Methods
+    
+    func checkLogin() {
+        
+        // Check if authenticated to determine if loggedIn
+        loggedIn = Auth.auth().currentUser != nil ? true : false
+    }
+    
     
     // MARK: Module Navigation Methods
     
-    func beginModule(_ moduleID: Int) {
+    func beginModule(_ moduleID: String) {
         
         // Find index for this module ID
         for index in 0..<modules.count {
@@ -78,7 +97,7 @@ class ContentModel : ObservableObject {
         return (currentLessonIndex + 1) < currentModule!.content.lessons.count
     }
     
-    func beginTest(_ moduleID: Int) {
+    func beginTest(_ moduleID: String) {
         
         //Set Current Module
         beginModule(moduleID)
@@ -132,6 +151,199 @@ class ContentModel : ObservableObject {
     }
     
     // MARK: Data Methods
+    
+    func getDatabaseModules() {
+        // Parse local style.html data
+        getLocalStyles()
+        
+        // Specify path
+        let collection = database.collection("modules")
+        
+        // Get documents in collection
+        collection.getDocuments { querySnapshot, error in
+            
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let snapShot = querySnapshot {
+                
+                // Create an array to temporarily store the modules
+                var modules = [Module]()
+                
+                // Loop through the documents in snapShot
+                // snapShot.documents = dictionary that contains all the key/value pairs (field/value) pairs
+                for doc in snapShot.documents {
+                    
+                    // Create a new module instance
+                    var m = Module()
+                    
+                    // Parse the values from doc into module
+                    m.id = doc["id"] as? String ?? ""
+                    m.category = doc["category"] as? String ?? ""
+                    
+                    // Parse lesson content
+                    let contentMap = doc["content"] as! [String:Any]
+                    
+                    m.content.id = contentMap["id"]  as? String ?? ""
+                    m.content.description = contentMap["description"]  as? String ?? ""
+                    m.content.image = contentMap["image"]  as? String ?? ""
+                    m.content.time = contentMap["time"]  as? String ?? ""
+                    
+                    
+                    // Parse test content
+                    let testMap = doc["test"] as! [String:Any]
+                    
+                    m.test.id = testMap["id"]  as? String ?? ""
+                    m.test.description = testMap["description"]  as? String ?? ""
+                    m.test.image = testMap["image"]  as? String ?? ""
+                    m.test.time = testMap["time"]  as? String ?? ""
+                    
+                    // Add module to array
+                    modules.append(m)
+                    
+                }
+                
+                // Assign modules to the published property in a dispatch queue since it updates the UI
+                DispatchQueue.main.async {
+                    self.modules = modules
+                }
+                
+            } else {
+                print("No snapShot returned")
+            }
+            
+        }
+        
+    }
+    
+    func getLessons(module: Module, completion: @escaping () -> Void) {
+        
+        // Specify path to the lessons
+        let collection = database.collection("modules").document("\(module.id)").collection("lessons")
+        
+        // Get documents
+        collection.getDocuments { querySnapshot, error in
+            
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            else if let snapShot = querySnapshot {
+                
+                // Create temporary array to hold lessons as we get them
+                var lessons = [Lesson]()
+                
+                // Loop through documents in the snapShot to build array of lessons
+                for doc in snapShot.documents {
+                 
+                    // Empty lesson
+                    var l = Lesson()
+                    
+                    // Parse and set properties
+                    l.id = doc["id"] as? String ?? UUID().uuidString
+                    l.duration = doc["duration"] as? String ?? ""
+                    l.explanation = doc["explanation"] as? String ?? ""
+                    l.title = doc["title"] as? String ?? ""
+                    l.video = doc["video"] as? String ?? ""
+                    
+                    // Add lesson to array
+                    lessons.append(l)
+                }
+                
+                // Set the lesson to the module
+                
+                // Loop through published modules array using ennumerated so we get the index
+                for (index, m) in self.modules.enumerated() {
+                    
+                    // Find module that matches module passed into function
+                    if m.id == module.id {
+                        
+                        // Found the matching one
+                        self.modules[index].content.lessons = lessons
+                        
+                        // Call completion closure to run code inside completion closure
+                        completion()
+                        
+                    }
+                }
+            }
+            else {
+                print("No snapShot returned")
+            }
+        }
+    }
+    
+    func getQuestions(module: Module, completion: @escaping () -> Void ) {
+        
+        // Specify path to the questions
+        let collection = database.collection("modules").document(module.id).collection("questions")
+        
+        // Get documents
+        collection.getDocuments { querySnapShot, error in
+            
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            else if let snapShot = querySnapShot {
+                
+                // Create temporary array to hold questions as we get them
+                var questions = [Question]()
+                
+                // Loop through documents in the snapShot to build array of questions
+                for doc in snapShot.documents {
+                    
+                    // Empty question
+                    var q = Question()
+                    
+                    // Parse and set properties
+                    q.id = doc["id"] as? String ?? UUID().uuidString
+                    q.correctIndex = doc["correctIndex"] as? Int ?? 0
+                    q.content = doc["content"] as? String ?? ""
+                    q.answers = doc["answers"] as? [String] ?? [String]()
+                    
+                    // Add question to array
+                    questions.append(q)
+                }
+                
+                // Set the questions to the lesson
+                // Loop through published modules array using ennumerated so we get the index
+                for (index, m) in self.modules.enumerated() {
+                    // Find module that matches module passed into function
+                    if m.id == module.id {
+                        
+                        // Found the matching one so assign questions
+                        self.modules[index].test.questions = questions
+                        
+                        // Call completion closure to run code inside completion closure
+                        completion()
+                    }
+                }
+                
+                
+            }
+            else {
+                print("No snapshot returned for questions")
+            }
+        }
+    }
+    
+    func getLocalStyles() {
+        
+        // Parse style data
+        let styleURL = Bundle.main.url(forResource: "style", withExtension: "html")
+        guard styleURL != nil else {
+            return
+        }
+        do {
+            // Create data object
+            let styleData = try Data(contentsOf: styleURL!)
+            self.styleData = styleData
+
+        } catch {
+            print("Couldn't parse style data")
+            print(error)
+        }
+        
+    }
+    
     func getLocalData() {
         // Get url
         let jsonURL = Bundle.main.url(forResource: "data", withExtension: "json")

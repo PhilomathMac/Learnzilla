@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>831069741645-110uuojpgcnufe94h9cohq6h57dgnakn.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.831069741645-110uuojpgcnufe94h9cohq6h57dgnakn</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC8xQ5WGhE2XgQWvbn7xF8Kn4M4ebq-7-g</string>
+	<key>GCM_SENDER_ID</key>
+	<string>831069741645</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.macdonald.LearningApp</string>
+	<key>PROJECT_ID</key>
+	<string>firestore-learning-app-4c383</string>
+	<key>STORAGE_BUCKET</key>
+	<string>firestore-learning-app-4c383.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:831069741645:ios:a1b3060033b794b3167204</string>
+</dict>
+</plist>
