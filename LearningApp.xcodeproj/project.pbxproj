@@ -31,9 +31,11 @@
 		BB34044C27E3ECF1000CD6BA /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB34044B27E3ECF1000CD6BA /* LaunchView.swift */; };
 		BB34045327E3ED7B000CD6BA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB34045227E3ED7B000CD6BA /* LoginView.swift */; };
 		BB34045527E3ED84000CD6BA /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB34045427E3ED84000CD6BA /* ProfileView.swift */; };
+		BB34045727EA3FAD000CD6BA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB34045627EA3FAD000CD6BA /* User.swift */; };
+		BB34045927EA4072000CD6BA /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB34045827EA4072000CD6BA /* UserService.swift */; };
+		BB34047627EBB92B000CD6BA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB34047527EBB92B000CD6BA /* GoogleService-Info.plist */; };
 		BB42CC1927864C6B00E5D308 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB42CC1827864C6B00E5D308 /* TestView.swift */; };
 		BB42CC1B27866B1900E5D308 /* TestResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB42CC1A27866B1900E5D308 /* TestResultView.swift */; };
-		BB484AC827BC3C3700CF307F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB484AC727BC3C3700CF307F /* GoogleService-Info.plist */; };
 		BB484ACB27BC3C7F00CF307F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = BB484ACA27BC3C7F00CF307F /* FirebaseFirestore */; };
 		BB484ACD27BC3C7F00CF307F /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = BB484ACC27BC3C7F00CF307F /* FirebaseFirestoreSwift-Beta */; };
 /* End PBXBuildFile section */
@@ -63,9 +65,11 @@
 		BB34044B27E3ECF1000CD6BA /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		BB34045227E3ED7B000CD6BA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		BB34045427E3ED84000CD6BA /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		BB34045627EA3FAD000CD6BA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BB34045827EA4072000CD6BA /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		BB34047527EBB92B000CD6BA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BB42CC1827864C6B00E5D308 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		BB42CC1A27866B1900E5D308 /* TestResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResultView.swift; sourceTree = "<group>"; };
-		BB484AC727BC3C3700CF307F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,7 @@
 				BB238EFD2742EF5B00B96908 /* Views */,
 				BB238EFE2742EF6100B96908 /* ViewModels */,
 				BB238EFF2742EF6700B96908 /* Models */,
+				BB34045A27EA4120000CD6BA /* Helpers */,
 				BB238F002742EF6B00B96908 /* Resources */,
 				BB238EF32742EEFA00B96908 /* Assets.xcassets */,
 				BB238F012742EF7100B96908 /* Utilities */,
@@ -152,6 +157,7 @@
 				BB238F0E2742F5A500B96908 /* Lesson.swift */,
 				BB238F102742F5B300B96908 /* Test.swift */,
 				BB238F122742F5C300B96908 /* Question.swift */,
+				BB34045627EA3FAD000CD6BA /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -161,7 +167,6 @@
 			children = (
 				BB238F072742F20600B96908 /* data.json */,
 				BB238F062742F20600B96908 /* style.html */,
-				BB300EB3274319BD00D8D1EF /* Constants.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -169,7 +174,7 @@
 		BB238F012742EF7100B96908 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				BB484AC727BC3C3700CF307F /* GoogleService-Info.plist */,
+				BB34047527EBB92B000CD6BA /* GoogleService-Info.plist */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -226,6 +231,15 @@
 				BB1DADE3274708BE00910B92 /* RectangleCard.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		BB34045A27EA4120000CD6BA /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				BB34045827EA4072000CD6BA /* UserService.swift */,
+				BB300EB3274319BD00D8D1EF /* Constants.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,9 +309,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB34047627EBB92B000CD6BA /* GoogleService-Info.plist in Resources */,
 				BB238F082742F20600B96908 /* style.html in Resources */,
 				BB238EF72742EEFA00B96908 /* Preview Assets.xcassets in Resources */,
-				BB484AC827BC3C3700CF307F /* GoogleService-Info.plist in Resources */,
 				BB238EF42742EEFA00B96908 /* Assets.xcassets in Resources */,
 				BB238F092742F20600B96908 /* data.json in Resources */,
 			);
@@ -316,6 +330,7 @@
 				BB238F152743021F00B96908 /* HomeViewRow.swift in Sources */,
 				BB1DADE4274708BE00910B92 /* RectangleCard.swift in Sources */,
 				BB42CC1927864C6B00E5D308 /* TestView.swift in Sources */,
+				BB34045927EA4072000CD6BA /* UserService.swift in Sources */,
 				BB238F132742F5C300B96908 /* Question.swift in Sources */,
 				BB34044C27E3ECF1000CD6BA /* LaunchView.swift in Sources */,
 				BB300EF527432C4600D8D1EF /* CodeTextView.swift in Sources */,
@@ -330,6 +345,7 @@
 				BB34045327E3ED7B000CD6BA /* LoginView.swift in Sources */,
 				BB238F0D2742F58800B96908 /* Content.swift in Sources */,
 				BB238F0B2742F45400B96908 /* Module.swift in Sources */,
+				BB34045727EA3FAD000CD6BA /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

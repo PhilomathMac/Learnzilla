@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import Firebase
 
 struct LoginView: View {
     
@@ -14,6 +16,7 @@ struct LoginView: View {
     @State var email = ""
     @State var name = ""
     @State var password = ""
+    @State var errorMessage: String? = nil
     
     var buttonText: String {
         
@@ -29,16 +32,16 @@ struct LoginView: View {
     var body: some View {
         
         VStack (spacing: 10) {
-         
+            
             Spacer()
             
-            // TODO: Logo
+            // Logo
             Image(systemName: "book")
                 .resizable()
                 .scaledToFit()
                 .frame(maxWidth: 150)
             
-            // TODO: Title
+            // Title
             Text("Learnzilla")
                 .font(.largeTitle)
             
@@ -60,21 +63,78 @@ struct LoginView: View {
             .pickerStyle(.segmented)
             
             // Form
-            if loginMode == Constants.LoginMode.createAccount {
-                TextField("Name", text: $name)
+            Group {
+                if loginMode == Constants.LoginMode.createAccount {
+                    TextField("Name", text: $name)
+                }
+                
+                TextField("Email", text: $email)
+                
+                SecureField("Password", text: $password)
+                
+                // Error Message
+                if errorMessage != nil {
+                    Text(errorMessage!)
+                        .foregroundColor(.red)
+                        .italic()
+                }
             }
-            
-            TextField("Email", text: $email)
-            
-            SecureField("Password", text: $password)
             
             // Button
             Button {
                 if loginMode == Constants.LoginMode.login {
-                    // TODO: Log the user in
+                    
+                    // Log the user in
+                    Auth.auth().signIn(withEmail: email, password: password) { result, error in
+                        
+                        // Check for error
+                        guard error == nil else {
+                            self.errorMessage = error!.localizedDescription
+                            return
+                        }
+                        // Clear error message
+                        self.errorMessage = nil
+                        
+                        // Fetch the user meta data
+                        self.model.getUserData()
+                        
+                        // checkLogin to change LoggedIn
+                        // changes the view to logged in view
+                        model.checkLogin()
+                    }
                 }
                 else {
-                    // TODO: Create a new account
+                    // Create a new account
+                    Auth.auth().createUser(withEmail: email, password: password) { result, error in
+                        
+                        // Check for errors
+                        guard error == nil else {
+                            self.errorMessage = error!.localizedDescription
+                            return
+                        }
+                        
+                        // Clear error message
+                        self.errorMessage = nil
+                        
+                        // TODO: Refactor code - move methods out of view code
+                        // Save the first name to database
+                        let db = Firestore.firestore()
+                        
+                        let firestoreUser = Auth.auth().currentUser
+                        
+                        let userDoc = db.collection("users").document(firestoreUser!.uid)
+                        
+                        userDoc.setData(["name" : name], merge: true)
+                        
+                        // Update user meta data
+                        let user = UserService.shared.user
+                        user.name = name
+                        
+                        // checkLogin to change LoggedIn
+                        // changes the view to logged in view
+                        model.checkLogin()
+                        
+                    }
                 }
             } label: {
                 ZStack {

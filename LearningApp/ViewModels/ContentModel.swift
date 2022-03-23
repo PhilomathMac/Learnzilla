@@ -56,6 +56,14 @@ class ContentModel : ObservableObject {
         
         // Check if authenticated to determine if loggedIn
         loggedIn = Auth.auth().currentUser != nil ? true : false
+        
+        // Check if user meta data has been fetched.
+        if UserService.shared.user.name == "" {
+            
+            // Data hasn't been fetched yet
+            getUserData()
+        }
+        
     }
     
     
@@ -152,6 +160,35 @@ class ContentModel : ObservableObject {
     
     // MARK: Data Methods
     
+    func getUserData() {
+        
+        // Check if there is a logged in user
+        guard Auth.auth().currentUser != nil else {
+            return
+        }
+        
+        // Get references
+        let db = Firestore.firestore()
+        let ref = db.collection("users").document(Auth.auth().currentUser!.uid)
+        
+        // Get user meta data
+        ref.getDocument { docSnapshot, error in
+            
+            guard error == nil && docSnapshot != nil else {
+                return
+            }
+            
+            let data = docSnapshot!.data()
+            let user = UserService.shared.user
+            
+            // Parse data into the user meta data
+            user.name = data?["name"] as? String ?? ""
+            user.lastModule = data?["lastModule"] as? Int
+            user.lastLesson = data?["lastLesson"] as? Int
+            user.lastQuestion = data?["lastQuestion"] as? Int
+            
+        }
+    }
     func getDatabaseModules() {
         // Parse local style.html data
         getLocalStyles()
