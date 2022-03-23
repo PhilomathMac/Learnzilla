@@ -67,6 +67,10 @@ struct TestView: View {
                     if submitted {
                         
                         if model.currentQuestionIndex + 1 == model.currentModule!.test.questions.count {
+                            
+                            // Call nextQuestion just to ensure that user data saves correctly
+                            model.nextQuestion()
+                            
                             showResults = true
                         }
                         model.nextQuestion()

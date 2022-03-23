@@ -138,6 +138,9 @@ class ContentModel : ObservableObject {
             currentLessonIndex = 0
         }
         
+        // Save the progress
+        saveUserData()
+        
     }
     
     func nextQuestion() {
@@ -156,10 +159,42 @@ class ContentModel : ObservableObject {
             currentQuestionIndex = 0
         }
         
+        // Save user data
+        saveUserData()
+        
     }
     
     // MARK: Data Methods
     
+    ///Saves user data locally in UserService singleton. If writeToDatabase parameter is true, it also writes the userData to Firestore database.
+    func saveUserData(writeToDatabase: Bool = false) {
+        
+        // Check if logged in
+        if let loggedInUser = Auth.auth().currentUser {
+            
+            // Save the data locally
+            let user = UserService.shared.user
+            
+            user.lastModule = currentModuleIndex
+            user.lastLesson = currentLessonIndex
+            user.lastQuestion = currentQuestionIndex
+            
+            if writeToDatabase {
+                
+                // Save the data in database
+                let db = Firestore.firestore()
+                let userRef = db.collection("users").document(loggedInUser.uid)
+                
+                // Note: NSNull is the same as nil but works with Firestore database
+                userRef.setData(["lastModule": user.lastModule ?? NSNull(),
+                                 "lastLesson" : user.lastLesson  ?? NSNull(),
+                                 "lastQuestion" : user.lastQuestion  ?? NSNull()], merge: true)
+                
+            }
+            
+        }
+        
+    }
     func getUserData() {
         
         // Check if there is a logged in user

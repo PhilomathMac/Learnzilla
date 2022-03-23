@@ -50,6 +50,9 @@ struct ContentDetailView: View {
                 }
             } else {
                 Button {
+                    // Call next lesson - to ensure that user data is saving correctly
+                    model.nextLesson()
+                    
                     model.currentContentSelected = nil
                 } label: {
                     ZStack {
