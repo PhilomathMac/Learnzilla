@@ -109,7 +109,7 @@ struct TestView: View {
     var buttonText : String {
         // Check if answer has been submitted
         if submitted == true {
-            if model.currentQuestionIndex + 1 == model.currentModule!.test.questions.count {
+            if model.currentQuestionIndex + 1 == model.currentModule?.test.questions.count ?? 0 {
                 return "Show Score"
             } else {
                 return "Next Question"
