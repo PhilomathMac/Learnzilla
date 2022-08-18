@@ -1,7 +1,7 @@
 # Learnzilla
 
 <p align="center">
-  <img src="https://github.com/PhilomathMac/Learnzilla/blob/main/PortfolioImage.png?raw=true" alt="learnzilla screenshot" width="200"/>
+  <img src="https://github.com/PhilomathMac/Learnzilla/blob/main/PortfolioImage.png?raw=true" alt="learnzilla screenshot" width="100%"/>
 </p>
 
 ## Description
