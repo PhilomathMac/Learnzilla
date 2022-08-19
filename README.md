@@ -9,7 +9,20 @@ A swiftUI app that teaches the basics of both Swift and SwiftUI using apple's do
 
 ## Skills Practiced
 
-* ?
+* EnvironmentObjects
+* LazyVStack
+* .onAppear Modifier
+* AVPlayer
+* AVKit
+* .clipShape Modifier
+* Authentication Flow
+* Error Message Flow
+* Firebase Authentication
+* Firebase Database
+* Observable Objects
+* NSAttributedStrings
+* UserService Meta Data
+* JSON
 
 ## Future Features / Fixes
 * Fix transparent tab bar
@@ -17,7 +30,12 @@ A swiftUI app that teaches the basics of both Swift and SwiftUI using apple's do
 
 ## Use Instructions
 
-This app involves using a Firebase database. You'll need to install dependencies for Firebase, create your own Firebase database, and add your own GoogleService-Info.plist file.
+This app involves using a Firebase database. 
+1. Clone project
+2. Import Firebase dependencies
+3. Create a Firebase project and download GoogleServices-Info.plist
+4. Add plist to project
+5. Ensure Firebase project has email/password authentication turned on
 
 ## Attributions
 
